@@ -11,6 +11,8 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
 import org.bukkit.block.DoubleChest;
+import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.Directional;
 import org.bukkit.inventory.DoubleChestInventory;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -30,7 +32,7 @@ public class Main extends JavaPlugin {
 		List<String> s = new ArrayList<String>();
 
 		for (int i = 0; i < disposalSigns.size(); i++) {
-			if(!s.contains(disposalSigns.get(i).toString())) {
+			if (!s.contains(disposalSigns.get(i).toString())) {
 				s.add(disposalSigns.get(i).toString());
 			}
 		}
@@ -94,24 +96,33 @@ public class Main extends JavaPlugin {
 			@Override
 			public void run() {
 				for (int i = 0; i < disposalSigns.size(); i++) {
-					if (disposalSigns.get(i).getBlock().getType().equals(Material.WALL_SIGN)) {
-						org.bukkit.material.Sign s = (org.bukkit.material.Sign) disposalSigns.get(i).getBlock()
-								.getState().getData();
-						Block attachedBlock = disposalSigns.get(i).getBlock().getRelative(s.getAttachedFace());
-						if (attachedBlock.getType().equals(Material.CHEST)
-								|| attachedBlock.getType().equals(Material.TRAPPED_CHEST)) {
-							Chest c = (Chest) attachedBlock.getState();
-							if (c.getInventory() instanceof DoubleChestInventory) {
-								DoubleChest doubleChest = (DoubleChest) c.getInventory().getHolder();
-								doubleChest.getInventory().clear();
-							} else {
-								c.getInventory().clear();
+					Bukkit.getServer().broadcastMessage("Test1");
+					if (disposalSigns.get(i).getBlock().getType().equals(Material.ACACIA_WALL_SIGN)
+							|| disposalSigns.get(i).getBlock().getType().equals(Material.BIRCH_WALL_SIGN)
+							|| disposalSigns.get(i).getBlock().getType().equals(Material.DARK_OAK_WALL_SIGN)
+							|| disposalSigns.get(i).getBlock().getType().equals(Material.JUNGLE_WALL_SIGN)
+							|| disposalSigns.get(i).getBlock().getType().equals(Material.OAK_WALL_SIGN)
+							|| disposalSigns.get(i).getBlock().getType().equals(Material.SPRUCE_WALL_SIGN)) {
+						Block block = disposalSigns.get(i).getBlock();
+						BlockData data = block.getBlockData();
+						if (data instanceof Directional) {
+							Directional directional = (Directional) data;
+							Block attachedBlock = block.getRelative(directional.getFacing().getOppositeFace());
+							if (attachedBlock.getType().equals(Material.CHEST)
+									|| attachedBlock.getType().equals(Material.TRAPPED_CHEST)) {
+								Chest c = (Chest) attachedBlock.getState();
+								if (c.getInventory() instanceof DoubleChestInventory) {
+									DoubleChest doubleChest = (DoubleChest) c.getInventory().getHolder();
+									doubleChest.getInventory().clear();
+								} else {
+									c.getInventory().clear();
+								}
 							}
 						}
 					}
 				}
 			}
 
-		}.runTaskTimerAsynchronously(this, 0, 1200);
+		}.runTaskTimer(this, 0, 100);
 	}
 }
