@@ -96,7 +96,6 @@ public class Main extends JavaPlugin {
 			@Override
 			public void run() {
 				for (int i = 0; i < disposalSigns.size(); i++) {
-					Bukkit.getServer().broadcastMessage("Test1");
 					if (disposalSigns.get(i).getBlock().getType().equals(Material.ACACIA_WALL_SIGN)
 							|| disposalSigns.get(i).getBlock().getType().equals(Material.BIRCH_WALL_SIGN)
 							|| disposalSigns.get(i).getBlock().getType().equals(Material.DARK_OAK_WALL_SIGN)
