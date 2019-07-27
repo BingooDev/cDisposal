@@ -1,7 +1,7 @@
-name: cDesposal
+name: cDisposal
 version: 1.0
 author: Bingoo
-main: cDesposal.Main
+main: cDisposal.Main
 description: A plugin that makes it possible to have a trash can.
 api-version: 1.13
 

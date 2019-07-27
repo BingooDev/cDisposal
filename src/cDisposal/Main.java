@@ -1,4 +1,4 @@
-package cDesposal;
+package cDisposal;
 
 import java.util.ArrayList;
 import java.util.HashMap;
