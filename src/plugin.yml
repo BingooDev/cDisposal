@@ -1,11 +1,8 @@
 name: cDisposal
-version: 2.0
+version: 1.0
 author: Bingoo
 main: cDisposal.Main
 description: A plugin that makes it possible to have a trash can.
 api-version: 1.13
 
 commands:
-  soptunna:
-    aliases: [af, avfall, st]
-  cdisposalrelod:
