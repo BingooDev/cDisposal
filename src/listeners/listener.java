@@ -26,11 +26,7 @@ public class listener implements Listener {
 
 	@EventHandler
 	public void signPlace(SignChangeEvent e) {
-		if (e.getBlock().getType() == Material.SPRUCE_WALL_SIGN || e.getBlock().getType() == Material.ACACIA_WALL_SIGN
-				|| e.getBlock().getType() == Material.BIRCH_WALL_SIGN
-				|| e.getBlock().getType() == Material.DARK_OAK_WALL_SIGN
-				|| e.getBlock().getType() == Material.JUNGLE_WALL_SIGN
-				|| e.getBlock().getType() == Material.OAK_WALL_SIGN) {
+		if (e.getBlock().getType() == Material.WALL_SIGN) {
 			if (!e.getLine(0).toLowerCase().equals("[cdisposal]") &!e.getLine(0).toLowerCase().equals("[soptunna]")) {
 				return;
 			}
@@ -62,9 +58,7 @@ public class listener implements Listener {
 		Block b;
 		for (int i = 3; i >= 0; i--) {
 			b = e.getBlock().getRelative(bf[(i)]);
-			if (b.getType() == Material.ACACIA_WALL_SIGN || b.getType() == Material.BIRCH_WALL_SIGN
-					|| b.getType() == Material.DARK_OAK_WALL_SIGN || b.getType() == Material.JUNGLE_WALL_SIGN
-					|| b.getType() == Material.OAK_WALL_SIGN || b.getType() == Material.SPRUCE_WALL_SIGN) {
+			if (e.getBlock().getType() == Material.WALL_SIGN) {
 				BlockData data = b.getBlockData();
 				if (!(data instanceof Directional)) {
 					return;
@@ -87,11 +81,7 @@ public class listener implements Listener {
 		}
 
 		//Check if the block that has been break is not a sign. If it's not a sign check if a sign with  [soptunna] or [cdisposal] is placed on the block.
-		if (!e.getBlock().getType().equals(Material.ACACIA_WALL_SIGN) & !e.getBlock().getType().equals(Material.BIRCH_WALL_SIGN)
-				& !e.getBlock().getType().equals(Material.DARK_OAK_WALL_SIGN)
-				& !e.getBlock().getType().equals(Material.JUNGLE_WALL_SIGN)
-				& !e.getBlock().getType().equals(Material.OAK_WALL_SIGN)
-				& !e.getBlock().getType().equals(Material.SPRUCE_WALL_SIGN)) {
+		if (e.getBlock().getType() == Material.WALL_SIGN) {
 			return;
 		}
 		org.bukkit.block.Sign s = (org.bukkit.block.Sign) e.getBlock().getState();

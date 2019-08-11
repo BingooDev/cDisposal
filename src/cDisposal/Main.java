@@ -101,12 +101,7 @@ public class Main extends JavaPlugin {
 			@Override
 			public void run() {
 				for (int i = 0; i < disposalSigns.size(); i++) {
-					if (disposalSigns.get(i).getBlock().getType().equals(Material.ACACIA_WALL_SIGN)
-							|| disposalSigns.get(i).getBlock().getType().equals(Material.BIRCH_WALL_SIGN)
-							|| disposalSigns.get(i).getBlock().getType().equals(Material.DARK_OAK_WALL_SIGN)
-							|| disposalSigns.get(i).getBlock().getType().equals(Material.JUNGLE_WALL_SIGN)
-							|| disposalSigns.get(i).getBlock().getType().equals(Material.OAK_WALL_SIGN)
-							|| disposalSigns.get(i).getBlock().getType().equals(Material.SPRUCE_WALL_SIGN)) {
+					if (disposalSigns.get(i).getBlock().getType().equals(Material.WALL_SIGN)) {
 						Block block = disposalSigns.get(i).getBlock();
 						BlockData data = block.getBlockData();
 						if (data instanceof Directional) {
@@ -128,7 +123,7 @@ public class Main extends JavaPlugin {
 			}
 
 
-		}.runTaskTimer(this, 0, 100);
+		}.runTaskTimer(this, 0, 1200);
 	}
 	
 	public void saveCDisposalSigns() {
