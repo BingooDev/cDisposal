@@ -128,7 +128,7 @@ public class Main extends JavaPlugin {
 			}
 
 
-		}.runTaskTimer(this, 0, 100);
+		}.runTaskTimer(this, 0, 1200);
 	}
 	
 	public void saveCDisposalSigns() {
