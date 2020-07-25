@@ -29,11 +29,8 @@ public class ConfigManager {
 
 		if (!languagefile.exists()) {
 				InputStream stream = pl.getResource("language.yml");
-//				Files.copy(stream, new File(pl.getDataFolder(), "language.yml"));
 				File dest = new File(pl.getDataFolder(), "language.yml");
 				copy(stream, dest);
-				
-//				FileUtils.(stream, new File(pl.getDataFolder(), "language.yml"));
 			
 		}
 
