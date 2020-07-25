@@ -26,11 +26,7 @@ public class listener implements Listener {
 
 	@EventHandler
 	public void signPlace(SignChangeEvent e) {
-		if (e.getBlock().getType() == Material.SPRUCE_WALL_SIGN || e.getBlock().getType() == Material.ACACIA_WALL_SIGN
-				|| e.getBlock().getType() == Material.BIRCH_WALL_SIGN
-				|| e.getBlock().getType() == Material.DARK_OAK_WALL_SIGN
-				|| e.getBlock().getType() == Material.JUNGLE_WALL_SIGN
-				|| e.getBlock().getType() == Material.OAK_WALL_SIGN) {
+		if (e.getBlock().getType().toString().contains("WALL_SIGN")) {
 			if (!e.getLine(0).toLowerCase().equals("[cdisposal]") &!e.getLine(0).toLowerCase().equals("[soptunna]")) {
 				return;
 			}
@@ -40,8 +36,9 @@ public class listener implements Listener {
 			}
 			Directional directional = (Directional) data;
 			Block attachedBlock = e.getBlock().getRelative(directional.getFacing().getOppositeFace());
-			if (!attachedBlock.getLocation().getBlock().getType().equals(Material.CHEST)
-					& !attachedBlock.getLocation().getBlock().getType().equals(Material.TRAPPED_CHEST)) {
+			if (attachedBlock.getType() != Material.CHEST
+					& attachedBlock.getType() != Material.TRAPPED_CHEST
+					& attachedBlock.getType() != Material.BARREL) {
 				return;
 			}
 			if(e.getLine(0).toLowerCase().equals("[cdisposal]")) {

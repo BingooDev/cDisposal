@@ -8,6 +8,7 @@ import java.util.Map;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Barrel;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
 import org.bukkit.block.DoubleChest;
@@ -101,19 +102,14 @@ public class Main extends JavaPlugin {
 			@Override
 			public void run() {
 				for (int i = 0; i < disposalSigns.size(); i++) {
-					if (disposalSigns.get(i).getBlock().getType().equals(Material.ACACIA_WALL_SIGN)
-							|| disposalSigns.get(i).getBlock().getType().equals(Material.BIRCH_WALL_SIGN)
-							|| disposalSigns.get(i).getBlock().getType().equals(Material.DARK_OAK_WALL_SIGN)
-							|| disposalSigns.get(i).getBlock().getType().equals(Material.JUNGLE_WALL_SIGN)
-							|| disposalSigns.get(i).getBlock().getType().equals(Material.OAK_WALL_SIGN)
-							|| disposalSigns.get(i).getBlock().getType().equals(Material.SPRUCE_WALL_SIGN)) {
+					if (disposalSigns.get(i).getBlock().getType().toString().contains("WALL_SIGN")) {
 						Block block = disposalSigns.get(i).getBlock();
 						BlockData data = block.getBlockData();
 						if (data instanceof Directional) {
 							Directional directional = (Directional) data;
 							Block attachedBlock = block.getRelative(directional.getFacing().getOppositeFace());
-							if (attachedBlock.getType().equals(Material.CHEST)
-									|| attachedBlock.getType().equals(Material.TRAPPED_CHEST)) {
+							if (attachedBlock.getType() == Material.CHEST
+									|| attachedBlock.getType() == Material.TRAPPED_CHEST) {
 								Chest c = (Chest) attachedBlock.getState();
 								if (c.getInventory() instanceof DoubleChestInventory) {
 									DoubleChest doubleChest = (DoubleChest) c.getInventory().getHolder();
@@ -121,6 +117,9 @@ public class Main extends JavaPlugin {
 								} else {
 									c.getInventory().clear();
 								}
+							} else if(attachedBlock.getType() == Material.BARREL) {
+								Barrel b = (Barrel) attachedBlock.getState();
+								b.getInventory().clear();
 							}
 						}
 					}
