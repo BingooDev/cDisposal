@@ -108,18 +108,20 @@ public class Main extends JavaPlugin {
 						if (data instanceof Directional) {
 							Directional directional = (Directional) data;
 							Block attachedBlock = block.getRelative(directional.getFacing().getOppositeFace());
-							if (attachedBlock.getType() == Material.CHEST
-									|| attachedBlock.getType() == Material.TRAPPED_CHEST) {
-								Chest c = (Chest) attachedBlock.getState();
-								if (c.getInventory() instanceof DoubleChestInventory) {
-									DoubleChest doubleChest = (DoubleChest) c.getInventory().getHolder();
-									doubleChest.getInventory().clear();
-								} else {
-									c.getInventory().clear();
-								}
-							} else if(attachedBlock.getType() == Material.BARREL) {
-								Barrel b = (Barrel) attachedBlock.getState();
-								b.getInventory().clear();
+							if(attachedBlock.getChunk().isLoaded()) {
+								if (attachedBlock.getType() == Material.CHEST
+										|| attachedBlock.getType() == Material.TRAPPED_CHEST) {
+									Chest c = (Chest) attachedBlock.getState();
+									if (c.getInventory() instanceof DoubleChestInventory) {
+										DoubleChest doubleChest = (DoubleChest) c.getInventory().getHolder();
+										doubleChest.getInventory().clear();
+									} else {
+										c.getInventory().clear();
+									}
+								} else if(attachedBlock.getType() == Material.BARREL) {
+									Barrel b = (Barrel) attachedBlock.getState();
+									b.getInventory().clear();
+								}								
 							}
 						}
 					}
