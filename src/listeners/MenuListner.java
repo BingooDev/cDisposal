@@ -2,7 +2,7 @@ package listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_16_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_13_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -11,10 +11,9 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import cDisposal.Main;
-import net.minecraft.server.v1_16_R1.ChatMessageType;
-import net.minecraft.server.v1_16_R1.IChatBaseComponent.ChatSerializer;
-import net.minecraft.server.v1_16_R1.IChatMutableComponent;
-import net.minecraft.server.v1_16_R1.PacketPlayOutChat;
+import net.minecraft.server.v1_13_R2.IChatBaseComponent;
+import net.minecraft.server.v1_13_R2.IChatBaseComponent.ChatSerializer;
+import net.minecraft.server.v1_13_R2.PacketPlayOutChat;
 
 public class MenuListner implements Listener {
 	Main pl = Main.getPlugin(Main.class);
@@ -50,9 +49,9 @@ public class MenuListner implements Listener {
 						String yesMessage = pl.cfgm.getLanguage().getString("warningYesMessage");
 						String noMessage = pl.cfgm.getLanguage().getString("warningNoMessage");
 						String message = String.format("[\"\",{\"text\":\"» \",\"color\":\"dark_gray\",\"bold\":true},{\"text\":\"%s\",\"color\":\"dark_green\",\"bold\":true,\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/avfall true\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":{\"text\":\"\",\"extra\":[{\"text\":\"Klicka här för att godkänna\",\"color\":\"dark_green\"}]}}},{\"text\":\" \\n\",\"color\":\"none\",\"bold\":false},{\"text\":\"» \",\"color\":\"dark_gray\",\"bold\":true},{\"text\":\"%s\",\"color\":\"red\",\"bold\":true,\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/avfall false\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":{\"text\":\"\",\"extra\":[{\"text\":\"Klicka här för att avbryta\",\"color\":\"red\"}]}}}]", yesMessage, noMessage);
-						IChatMutableComponent comp = ChatSerializer.a(message);
+						IChatBaseComponent comp = ChatSerializer.a(message);
 						
-						PacketPlayOutChat packet = new PacketPlayOutChat(comp, ChatMessageType.CHAT, p.getUniqueId());
+						PacketPlayOutChat packet = new PacketPlayOutChat(comp);
 						((CraftPlayer) p).getHandle().playerConnection.sendPacket(packet);
 						if(pl.cfgm.languagecfg.getBoolean("lineBreakes")) {
 							p.sendMessage(" ");

@@ -8,7 +8,6 @@ import java.util.Map;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.Barrel;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
 import org.bukkit.block.DoubleChest;
@@ -118,10 +117,7 @@ public class Main extends JavaPlugin {
 									} else {
 										c.getInventory().clear();
 									}
-								} else if(attachedBlock.getType() == Material.BARREL) {
-									Barrel b = (Barrel) attachedBlock.getState();
-									b.getInventory().clear();
-								}								
+								}						
 							}
 						}
 					}
