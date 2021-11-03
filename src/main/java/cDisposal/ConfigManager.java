@@ -60,7 +60,7 @@ public class ConfigManager {
 		try {
 			languagecfg.save(languagefile);
 		} catch (IOException e) {
-			Bukkit.getServer().getConsoleSender().sendMessage("§4Could not save the language.yml file!");
+			Bukkit.getServer().getConsoleSender().sendMessage("Â§cCould not save the language.yml file!");
 		}
 	}
 

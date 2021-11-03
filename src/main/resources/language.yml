@@ -1,6 +1,10 @@
 #Detta är de 2 svarsalternativen till varningsfrågan som skrivs ut i chatten.
-warningYesMessage: "Ja, det vill jag!"
-warningNoMessage: "Nej, det vill jag inte!"
+warningYesMessage: "§2§lJa, det vill jag!"
+warningNoMessage: "§c§lNej, det vill jag inte!"
+
+#Detta är de 2 svarsalternativen till varningsfrågan som visas när du håller över alternativen.
+yesButtonHover: "§2Klicka här för att godkänna"
+noButtonHover: "§cNej, det vill jag inte!"
 
 #Detta är meddelandet som kommer upp om man inte godkänner att öpnna spotunnan, via chatten.
 didNotOpenTrashCan: "§cSoptunnan öppnades inte."
