@@ -14,7 +14,7 @@ import org.bukkit.event.block.SignChangeEvent;
 
 import cDisposal.Main;
 
-public class listener implements Listener {
+public class EventListener implements Listener {
 
 	Main pl = Main.getPlugin(Main.class);
 

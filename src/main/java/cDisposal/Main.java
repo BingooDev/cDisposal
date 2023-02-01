@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import listeners.EventListener;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -29,7 +30,7 @@ public class Main extends JavaPlugin {
 	public ConfigManager cfgm;
 
 	public void onEnable() {
-		Bukkit.getServer().getPluginManager().registerEvents(new listeners.listener(), (Plugin) this);
+		Bukkit.getServer().getPluginManager().registerEvents(new EventListener(), (Plugin) this);
 		Bukkit.getServer().getPluginManager().registerEvents(new listeners.MenuListner(), (Plugin) this);
 		getSavedDisposalSigns();
 		emptyChests();
