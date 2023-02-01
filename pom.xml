@@ -6,7 +6,7 @@
 
     <groupId>groupId</groupId>
     <artifactId>cDisposal</artifactId>
-    <version>2.1-RELEASE</version>
+    <version>2.2-RELEASE</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

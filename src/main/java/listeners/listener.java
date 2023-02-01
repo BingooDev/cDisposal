@@ -25,10 +25,12 @@ public class listener implements Listener {
 	// }
 	// }
 
-	@EventHandler
+	// Using highest to overwrite CMI check. CMI will otherwise stop coloring of sign if player doesn't have permission.
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void signPlace(SignChangeEvent e) {
 		if (e.getBlock().getType().toString().contains("WALL_SIGN")) {
-			if (!e.getLine(0).toLowerCase().equals("[cdisposal]") &!e.getLine(0).toLowerCase().equals("[soptunna]")) {
+			if (!ChatColor.stripColor(ChatColor.translateAlternateColorCodes('&', e.getLine(0))).equalsIgnoreCase("[cdisposal]")
+					&! ChatColor.stripColor(ChatColor.translateAlternateColorCodes('&', e.getLine(0))).equalsIgnoreCase("[soptunna]")) {
 				return;
 			}
 			BlockData data = e.getBlock().getBlockData();
